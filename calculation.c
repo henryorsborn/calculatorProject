@@ -42,6 +42,8 @@ struct calculation* stringToCalc(char* line){
 	return myCalc;
 }
 
+
+
 struct calculation reduceCalculation(struct calculation c, char stepAcc, float dataAcc){
 
 	if(isCalculationAtomic(c)){
@@ -74,6 +76,7 @@ struct calculation reduceCalculation(struct calculation c, char stepAcc, float d
 	}
 	return c;
 }
+
 
 char* calcToString(struct calculation c){
 	
@@ -114,8 +117,10 @@ char* calcToString(struct calculation c){
 }
 
 
+
 int isCalculationAtomic(struct calculation c) {
 
 	return c.sizeFactor==0;
 
 }
+

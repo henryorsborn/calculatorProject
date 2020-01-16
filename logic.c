@@ -53,6 +53,7 @@ char * processLine() {
 	printf("%s\n", calcToString(myCalc));
 	printf("%d\n", isCalculationAtomic(myCalc));
 	reduceCalculation(myCalc, '+', 0);
+
 }
 
 int getSplitFactor(char *line, char step){

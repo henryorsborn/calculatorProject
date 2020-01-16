@@ -17,6 +17,7 @@ struct calculation {
 
 struct calculation reduceCalculation(struct calculation, char, float);
 
+
 void printCalc(struct calculation);
 /*
  * This is a helper function used in debugging for calculations
@@ -24,6 +25,7 @@ void printCalc(struct calculation);
 
 struct calculation* makeCalculation(char*, struct calculation*,
 		float, int);
+
 /*
  * This is the constructor of a calculation
  */
@@ -39,3 +41,4 @@ struct calculation* stringToCalc(char*);
  */
 
 int isCalculationAtomic(struct calculation);
+
