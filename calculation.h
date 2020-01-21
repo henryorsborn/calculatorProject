@@ -15,7 +15,9 @@ struct calculation {
 	int sizeFactor;
 };
 
-struct calculation reduceCalculation(struct calculation, char, float);
+struct calculation reduceASCalculation(struct calculation, char, float);
+
+struct calculation reduceMDCalculation(struct calculation, char, float);
 
 
 void printCalc(struct calculation);

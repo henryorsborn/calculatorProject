@@ -31,24 +31,38 @@ struct calculation* stringToCalc(char* line){
 	struct calculation* myCalc;
 	char* myOps;
 	struct calculation* myCalcs;
-	if(getStep(line)=='T'){
+	switch(getStep(line)){
 
-		float myData;
-		sscanf(line, "%f", &myData);
-		myCalc = makeCalculation(myOps, myCalcs, myData, 0);
-		printCalc(*myCalc);
-		return myCalc;
+		case 'T':{
+
+			float myData;
+			sscanf(line, "%f", &myData);
+			myCalc = makeCalculation(myOps, myCalcs, myData, 0);			     printCalc(*myCalc);
+			return myCalc;
+		}
+		break;
+			 
+		case 'P':{
+			
+			char* myParenthesis = (char*)malloc(100*sizeof(char));
+			sscanf(line, "%*[^(](%[^)]%*[^\n]", myParenthesis);
+			return myCalc;
+
+		}
+		break;
+		
 	}	
 	return myCalc;
 }
 
 
 
-struct calculation reduceCalculation(struct calculation c, char stepAcc, float dataAcc){
+struct calculation reduceASCalculation(struct calculation c, char stepAcc, float dataAcc){
 
+	printf("%f %c ", dataAcc, stepAcc);
+	printCalc(c);
 	if(isCalculationAtomic(c)){
-		printf("%f\nDONE\n", stepAcc=='+'? dataAcc+c.calcs[0].data :
-				dataAcc-c.calcs[0].data);
+		c.calcs[0].data += dataAcc;
 		return c;
 	} else {
 		if(stepAcc == '+'){
@@ -72,9 +86,21 @@ struct calculation reduceCalculation(struct calculation c, char stepAcc, float d
 		c.operators = newOperators;
 		c.calcs = newCalcs;
 		c.sizeFactor--;
-		return reduceCalculation(c, stepAcc, dataAcc);
+		return reduceASCalculation(c, stepAcc, dataAcc);
 	}
 	return c;
+}
+
+struct calculation reduceMDCalculation(struct calculation c, char stepAcc, float dataAcc){
+	
+	printf("%f %c ", dataAcc, stepAcc);
+	if(isCalculationAtomic(c)) {
+		printf("ATOMIC");
+	} else {
+		printf("NOT ATOMIC");
+	}
+	return c;
+
 }
 
 

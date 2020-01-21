@@ -25,8 +25,6 @@ char * processLine() {
 	subCalc2.sizeFactor = 0;
 	subCalc2.data = 3;
 	struct calculation subCalc3;
-	subCalc3.sizeFactor = 0;
-	subCalc3.data = 4542;
 	struct calculation subCalc4;
 	subCalc4.sizeFactor = 0;
 	subCalc4.data = 7;
@@ -37,10 +35,11 @@ char * processLine() {
 	subCalc6.sizeFactor = 0;
 	subCalc6.data = 34;
 	struct calculation myOtherCals[2] = {subCalc5, subCalc6};
-	//subCalc3.calcs = myOtherCals;
-	char otherOps[1] = {'+'};
+	subCalc3.calcs = myOtherCals;
+	//char otherOps[1] = {'+'};
 	//subCalc3.operators = otherOps;
-	//subCalc3.sizeFactor = 1;
+	subCalc3.sizeFactor = 0;
+	subCalc3.data = 12;
 	struct calculation subCalcs[4] = {subCalc1, subCalc2, subCalc3, subCalc4};	
 	
 	myCalc.operators = myOps;
@@ -50,9 +49,12 @@ char * processLine() {
 	printf("%f\n", subCalc7->data);
 	printf("%s\n", calcToString(*subCalc7));
 	printCalc(myCalc);
+	char* testString = "45 + 3 / 67 * (3 + 2 - 9) / 3";
+	printf("%s\n", testString);
+	stringToCalc(testString);
 	printf("%s\n", calcToString(myCalc));
-	printf("%d\n", isCalculationAtomic(myCalc));
-	reduceCalculation(myCalc, '+', 0);
+	printf("ATOMIC %d\n", isCalculationAtomic(myCalc));
+	printCalc(reduceASCalculation(myCalc, '+', 0));
 
 }
 
